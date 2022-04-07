@@ -25,4 +25,5 @@ public interface TraceMetaObjectHandler {
     default void strictInsertFill(Map<String, String> traceContent, String fieldName, String fieldVal) {
         traceContent.put(fieldName, fieldVal);
     }
+
 }

@@ -23,10 +23,9 @@ public class DefaultTraceMetaObjectHandler implements TraceMetaObjectHandler {
         } else {
             this.strictInsertFill(traceContentMap, Constants.LEGACY_TRACE_ID_NAME, headerTraceId);
         }
-
         // "ParentName" 如果为空设置为 this
         String headerParentName = traceContentMap.get(Constants.LEGACY_PARENT_SERVICE_NAME);
-        if (StringUtils.isEmpty(headerTraceId)) {
+        if (StringUtils.isEmpty(headerParentName)) {
             this.strictInsertFill(traceContentMap, Constants.LEGACY_PARENT_SERVICE_NAME, "this");
         } else {
             this.strictInsertFill(traceContentMap, Constants.LEGACY_PARENT_SERVICE_NAME, headerParentName);
