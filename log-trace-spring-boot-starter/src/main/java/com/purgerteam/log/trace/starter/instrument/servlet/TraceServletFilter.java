@@ -1,9 +1,8 @@
-package com.purgerteam.log.trace.starter.filter;
+package com.purgerteam.log.trace.starter.instrument.servlet;
 
 import com.purgerteam.log.trace.starter.TraceContentFactory;
 import com.purgerteam.log.trace.starter.TraceLogProperties;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.purgerteam.log.trace.starter.util.URLUtil;
 import org.slf4j.MDC;
 import org.springframework.util.StringUtils;
 
@@ -21,13 +20,10 @@ import java.util.Set;
  * @author <a href="mailto:yaoonlyi@gmail.com">purgeyao</a>
  * @since 1.0.0
  */
-public class TraceFilter implements Filter {
+public class TraceServletFilter implements Filter {
+    private final TraceLogProperties traceLogProperties;
 
-    private static final Logger log = LoggerFactory.getLogger(TraceFilter.class);
-
-    private TraceLogProperties traceLogProperties;
-
-    public TraceFilter(TraceLogProperties traceLogProperties) {
+    public TraceServletFilter(TraceLogProperties traceLogProperties) {
         this.traceLogProperties = traceLogProperties;
     }
 
@@ -36,21 +32,22 @@ public class TraceFilter implements Filter {
         HttpServletRequest request = ((HttpServletRequest) servletRequest);
 
         Map<String, String> formatMap = new HashMap<>(16);
-
         // 获取自定义参数
         Set<String> expandFormat = traceLogProperties.getFormat();
         for (String k : expandFormat) {
             String v = request.getHeader(k);
-            if (!StringUtils.isEmpty(v)) {
-                formatMap.put(k, URLDecoder.decode(v, "UTF-8"));
+            if (StringUtils.hasText(v)) {
+                formatMap.put(k, URLUtil.decode(v));
             }
         }
 
         // 写入 MDC
         TraceContentFactory.storageMDC(formatMap);
-
-        filterChain.doFilter(servletRequest, servletResponse);
-        MDC.clear();
+        try {
+            filterChain.doFilter(servletRequest, servletResponse);
+        } finally {
+            MDC.clear();
+        }
     }
 
 }

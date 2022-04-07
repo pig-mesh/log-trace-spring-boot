@@ -46,23 +46,10 @@
         <url>https://github.com/purgeteam/log-trace-spring-boot</url>
     </scm>
 
-    <!-- 定义snapshots库和releases库的nexus地址 -->
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
-
     <properties>
         <spring-boot.version>2.1.8.RELEASE</spring-boot.version>
         <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <spring-cloud-openfeign.version>2.1.2.RELEASE</spring-cloud-openfeign.version>
-
         <!-- jvm -->
         <java.version>1.8</java.version>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -81,7 +68,6 @@
 
     <dependencyManagement>
         <dependencies>
-
             <!-- Spring Boot -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -90,7 +76,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
             <!-- Spring Cloud -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -99,9 +84,29 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
+
+    <!-- 使用aliyun镜像 -->
+    <repositories>
+        <repository>
+            <id>aliyun</id>
+            <name>aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
+
+    <!-- 定义snapshots库和releases库的nexus地址 -->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <build>
         <plugins>

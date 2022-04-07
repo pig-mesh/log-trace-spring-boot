@@ -1,6 +1,5 @@
 package com.purgerteam.log.trace.starter;
 
-import com.purgerteam.log.trace.starter.filter.TraceFilter;
 import com.purgerteam.log.trace.starter.handlers.DefaultTraceMetaObjectHandler;
 import com.purgerteam.log.trace.starter.handlers.TraceMetaObjectHandler;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -16,11 +15,6 @@ import java.util.Map;
 @Configuration
 @EnableConfigurationProperties(TraceLogProperties.class)
 public class TraceAutoConfiguration {
-
-    @Bean
-    public TraceFilter traceFilter(TraceLogProperties traceLogProperties) {
-        return new TraceFilter(traceLogProperties);
-    }
 
     @Bean
     public TraceContentFactory traceContentFactory(Map<String, TraceMetaObjectHandler> traceMetaObjectHandlerMap) {

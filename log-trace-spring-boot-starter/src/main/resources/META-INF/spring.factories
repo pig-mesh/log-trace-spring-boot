@@ -1,6 +1,8 @@
 # Auto Configuration
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.purgerteam.log.trace.starter.TraceAutoConfiguration,\
+com.purgerteam.log.trace.starter.instrument.servlet.TraceServletConfiguration,\
+com.purgerteam.log.trace.starter.instrument.reactive.TraceReactiveConfiguration,\
 com.purgerteam.log.trace.starter.instrument.feign.TraceFeignClientAutoConfiguration,\
 com.purgerteam.log.trace.starter.instrument.zuul.TraceZuulAutoConfiguration,\
 com.purgerteam.log.trace.starter.instrument.resttemplate.TraceRestTemplateConfiguration,\

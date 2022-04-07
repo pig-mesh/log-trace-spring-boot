@@ -1,5 +1,7 @@
 package com.purgerteam.log.trace.starter.metadata;
 
+import java.util.Objects;
+
 /**
  * 日志格式 信息
  *
@@ -32,5 +34,22 @@ public class TraceFormatInfo {
 
     public void setFieldVal(String fieldVal) {
         this.fieldVal = fieldVal;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        TraceFormatInfo that = (TraceFormatInfo) o;
+        return Objects.equals(formatField, that.formatField) && Objects.equals(fieldVal, that.fieldVal);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(formatField, fieldVal);
     }
 }
