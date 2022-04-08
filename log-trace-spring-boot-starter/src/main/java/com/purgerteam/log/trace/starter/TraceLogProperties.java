@@ -2,7 +2,6 @@ package com.purgerteam.log.trace.starter;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,25 +19,6 @@ public class TraceLogProperties {
      */
     private Set<String> format = new HashSet<>();
 
-    /**
-     * 日志格式核心参数集合 默认 [当前项目名称,链路请求id,父项目名称]
-     */
-    @Deprecated
-    private Set<TraceFormatEnum> coreFormat = new HashSet<>(
-            Arrays.asList(
-                    TraceFormatEnum.LOCAL_NAME,
-                    TraceFormatEnum.TRACE_ID,
-                    TraceFormatEnum.PARENT_NAME
-            )
-    );
-
-    /**
-     * 日志格式自定义参数集合
-     */
-    @Deprecated
-    private Set<String> expandFormat = new HashSet<>();
-
-
     public Set<String> getFormat() {
         return format;
     }
@@ -47,19 +27,4 @@ public class TraceLogProperties {
         this.format = format;
     }
 
-    public Set<TraceFormatEnum> getCoreFormat() {
-        return coreFormat;
-    }
-
-    public void setCoreFormat(Set<TraceFormatEnum> coreFormat) {
-        this.coreFormat = coreFormat;
-    }
-
-    public Set<String> getExpandFormat() {
-        return expandFormat;
-    }
-
-    public void setExpandFormat(Set<String> expandFormat) {
-        this.expandFormat = expandFormat;
-    }
 }
