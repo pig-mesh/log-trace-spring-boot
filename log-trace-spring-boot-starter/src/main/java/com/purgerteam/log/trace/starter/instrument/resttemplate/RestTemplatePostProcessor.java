@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class RestTemplatePostProcessor implements BeanPostProcessor, PriorityOrdered {
 
-    private TraceContentFactory traceContentFactory;
+    private final TraceContentFactory traceContentFactory;
 
     public RestTemplatePostProcessor(TraceContentFactory traceContentFactory) {
         this.traceContentFactory = traceContentFactory;

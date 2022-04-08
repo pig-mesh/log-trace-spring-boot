@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class TraceFeignRequestInterceptor implements RequestInterceptor {
 
-    private TraceContentFactory traceContentFactory;
+    private final TraceContentFactory traceContentFactory;
 
     public TraceFeignRequestInterceptor(TraceContentFactory traceContentFactory){
         this.traceContentFactory = traceContentFactory;

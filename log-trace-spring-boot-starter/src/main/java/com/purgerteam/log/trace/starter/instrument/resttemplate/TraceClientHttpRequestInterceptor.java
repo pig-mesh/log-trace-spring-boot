@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public class TraceClientHttpRequestInterceptor implements ClientHttpRequestInterceptor {
 
-    private TraceContentFactory traceContentFactory;
+    private final TraceContentFactory traceContentFactory;
 
     public TraceClientHttpRequestInterceptor(TraceContentFactory traceContentFactory){
         this.traceContentFactory = traceContentFactory;

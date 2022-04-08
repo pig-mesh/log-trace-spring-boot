@@ -16,10 +16,9 @@ import java.util.Map;
  * @since 1.0
  */
 public class TracePreZuulFilter extends ZuulFilter {
-
     private static final Logger log = LoggerFactory.getLogger(TracePreZuulFilter.class);
 
-    private TraceContentFactory traceContentFactory;
+    private final TraceContentFactory traceContentFactory;
 
     public TracePreZuulFilter(TraceContentFactory traceContentFactory){
         this.traceContentFactory = traceContentFactory;
