@@ -1,2 +1,0 @@
-TraceDubboProviderFilter=com.purgerteam.log.trace.starter.instrument.dubbo.provider.TraceDubboProviderFilter
-TraceDubboConsumerFilter=com.purgerteam.log.trace.starter.instrument.dubbo.consumers.TraceDubboConsumerFilter
