@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author L.cm
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnClass(GlobalFilter.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.REACTIVE)
 public class TraceGatewayAutoConfiguration {

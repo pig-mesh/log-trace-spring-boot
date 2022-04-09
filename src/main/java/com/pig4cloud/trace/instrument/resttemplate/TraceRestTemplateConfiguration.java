@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
  * @author purgeyao
  * @since 1.0
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnClass({ RestTemplate.class, TraceContentFactory.class })
 public class TraceRestTemplateConfiguration {
 

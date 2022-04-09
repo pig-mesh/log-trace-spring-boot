@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * @author purgeyao
  * @since 1.0
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnClass({ Client.class, FeignContext.class, TraceContentFactory.class })
 @AutoConfigureBefore(FeignAutoConfiguration.class)
 public class TraceFeignClientAutoConfiguration {

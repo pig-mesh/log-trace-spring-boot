@@ -12,7 +12,7 @@ import java.util.Map;
  * @author purgeyao
  * @since 1.0
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(TraceLogProperties.class)
 public class TraceAutoConfiguration {
 

@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * @author purgeyao
  * @since 1.0
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnWebApplication
 @ConditionalOnClass({ ZuulFilter.class, TraceContentFactory.class })
 public class TraceZuulAutoConfiguration {

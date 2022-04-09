@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  * @author purgeyao
  * @since 1.0
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnClass({ DubboAutoConfiguration.class, TraceContentFactory.class })
 public class TraceDubboConfiguration {
 

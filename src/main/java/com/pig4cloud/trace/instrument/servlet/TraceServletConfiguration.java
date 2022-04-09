@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  * @author purgeyao
  * @since 1.0
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class TraceServletConfiguration {
 
