@@ -46,17 +46,7 @@ public class TraceReactiveFilter implements OrderedWebFilter {
 
         // 写入 MDC
         TraceContentFactory.storageMDC(formatMap);
-
-        // 传递 新的header
-        Map<String, String> copyOfContextMap = TraceContentFactory.assemblyTraceContentStatic();
-        ServerHttpRequest.Builder mutate = request.mutate();
-        mutate.headers(httpHeaders -> {
-            for (Map.Entry<String, String> copyOfContext : copyOfContextMap.entrySet()) {
-                httpHeaders.set(copyOfContext.getKey(), copyOfContext.getValue());
-            }
-        });
-
-        return chain.filter(exchange.mutate().request(mutate.build()).build())
+        return chain.filter(exchange)
                 .doFinally(t -> MDC.clear());
     }
 

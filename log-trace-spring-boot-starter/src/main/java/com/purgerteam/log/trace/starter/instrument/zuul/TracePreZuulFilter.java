@@ -20,7 +20,7 @@ public class TracePreZuulFilter extends ZuulFilter {
 
     private final TraceContentFactory traceContentFactory;
 
-    public TracePreZuulFilter(TraceContentFactory traceContentFactory){
+    public TracePreZuulFilter(TraceContentFactory traceContentFactory) {
         this.traceContentFactory = traceContentFactory;
     }
 
@@ -41,12 +41,19 @@ public class TracePreZuulFilter extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
+        // 1. 传递 traceId
         RequestContext context = RequestContext.getCurrentContext();
         Map<String, String> copyOfContextMap = traceContentFactory.assemblyTraceContent();
         for (Map.Entry<String, String> copyOfContext : copyOfContextMap.entrySet()) {
             context.addZuulRequestHeader(copyOfContext.getKey(), copyOfContext.getValue());
         }
-        log.debug("zuul traceid {}", MDC.get(Constants.LEGACY_TRACE_ID_NAME));
+        // 2. 获取 traceId
+        String traceId = MDC.get(Constants.LEGACY_TRACE_ID_NAME);
+        // 3. 处理响应的 header traceId
+        if (traceId != null) {
+            context.addZuulRequestHeader(Constants.LEGACY_TRACE_ID_NAME, traceId);
+        }
+        log.debug("zuul traceid {}", traceId);
         return null;
     }
 }
