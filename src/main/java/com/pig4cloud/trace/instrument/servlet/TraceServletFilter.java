@@ -3,11 +3,11 @@ package com.pig4cloud.trace.instrument.servlet;
 import com.pig4cloud.trace.TraceContentFactory;
 import com.pig4cloud.trace.TraceLogProperties;
 import com.pig4cloud.trace.util.URLUtil;
+import jakarta.servlet.*;
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.MDC;
 import org.springframework.util.StringUtils;
 
-import javax.servlet.*;
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
