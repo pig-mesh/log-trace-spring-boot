@@ -3,8 +3,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <groupId>com.pig4cloud.plugin</groupId>
-    <artifactId>log-trace-spring-boot-starter</artifactId>
-    <version>3.0.0</version>
+    <artifactId>log-trace-spring-boot3-starter</artifactId>
+    <version>3.2.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>log-trace-spring-boot-starter</name>
@@ -42,8 +42,8 @@
     </scm>
 
     <properties>
-        <spring-boot.version>3.0.0</spring-boot.version>
-        <spring-cloud.version>2021.0.5</spring-cloud.version>
+        <spring-boot.version>3.2.3</spring-boot.version>
+        <spring-cloud.version>2023.0.0</spring-cloud.version>
         <zuul.version>2.2.10.RELEASE</zuul.version>
         <dubbo.version>3.0.5</dubbo.version>
         <spring.checkstyle.plugin>0.0.23</spring.checkstyle.plugin>
@@ -87,18 +87,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
-            <version>${zuul.version}</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo-spring-boot-starter</artifactId>
-            <version>${dubbo.version}</version>
             <optional>true</optional>
         </dependency>
     </dependencies>

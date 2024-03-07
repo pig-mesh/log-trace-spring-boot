@@ -7,23 +7,22 @@
 
 支持组件：
 
-- zuul 调用
+- spring cloud gateway 调用
 - feign 调用
 - restTemplate 调用
-- dobbo 调用
 
 日志输出格式：
 
 ```
-2022-04-09 22:16:05.796  INFO [log-trace-service-a-demo,ac8ffaaed5f343da,log-trace-zuul-demo,,] 88948 --- [nio-8081-exec-7] c.p.l.t.service.a.demo.TestController    : controller test2 执行 ac8ffaaed5f343da
-2022-04-09 22:16:05.569  INFO [log-trace-service-a-demo,04cf5392dc5c4881,log-trace-zuul-demo,,] 88948 --- [nio-8081-exec-9] c.p.l.t.service.a.demo.TestController    : controller test2 执行 04cf5392dc5c4881
-2022-04-09 22:16:05.183  INFO [log-trace-service-a-demo,86b5c555ce4f4451,log-trace-zuul-demo,,] 88948 --- [nio-8081-exec-1] c.p.l.t.service.a.demo.TestController    : controller test2 执行 86b5c555ce4f4451
+2022-04-09 22:16:05.796  INFO [log-trace-service-a-demo,ac8ffaaed5f343da,log-trace-gateway-demo,,] 88948 --- [nio-8081-exec-7] c.p.l.t.service.a.demo.TestController    : controller test2 执行 ac8ffaaed5f343da
+2022-04-09 22:16:05.569  INFO [log-trace-service-a-demo,04cf5392dc5c4881,log-trace-gateway-demo,,] 88948 --- [nio-8081-exec-9] c.p.l.t.service.a.demo.TestController    : controller test2 执行 04cf5392dc5c4881
+2022-04-09 22:16:05.183  INFO [log-trace-service-a-demo,86b5c555ce4f4451,log-trace-gateway-demo,,] 88948 --- [nio-8081-exec-1] c.p.l.t.service.a.demo.TestController    : controller test2 执行 86b5c555ce4f4451
 ```
 
 我们可以通过 `86b5c555ce4f4451` id 进行查询链路上的所有日志信息。
 
 `log-trace-service-a-demo` 为当前应用。
-`log-trace-zuul-demo` 为上游应用。
+`log-trace-gateway-demo` 为上游应用。
 
 当然这些参数可以基于业务定制的。
 
@@ -34,8 +33,8 @@
 ```
 <dependency>
   <groupId>com.pig4cloud.plugin</groupId>
-  <artifactId>log-trace-spring-boot-starter</artifactId>
-  <version>3.0.0</version>
+  <artifactId>log-trace-spring-boot3-starter</artifactId>
+  <version>3.2.0</version>
 </dependency>
 ```
 
@@ -43,13 +42,13 @@
 
 这里以3个微服务来举例子。
 
-1. `log-trace-zuul-demo` 充当网关功能
+1. `log-trace-gateway-demo` 充当网关功能
 2. `log-trace-service-a-demo` 充当服务A
 3. `log-trace-service-b-demo` 充当服务B
 
 **调用链路为:**
 
-`log-trace-zuul-demo` -> `log-trace-service-a-demo` `TestController#test`
+`log-trace-gateway-demo` -> `log-trace-service-a-demo` `TestController#test`
 -> `log-trace-service-b-demo` `TestController#test`
 
 访问网关地址: `http://127.0.0.1:8000/a/test`
@@ -57,7 +56,7 @@
 **网关日志如下:**
 
 ```
-2022-04-09 22:16:05.434 DEBUG [33b07a9c5f324375,this] 89996 --- [nio-8000-exec-1] c.p.l.t.s.i.zuul.TracePreZuulFilter      : zuul traceid 33b07a9c5f324375
+2022-04-09 22:16:05.434 DEBUG [33b07a9c5f324375,this] 89996 --- [nio-8000-exec-1] c.p.l.t.s.i.gateway.TracePregatewayFilter      : gateway traceid 33b07a9c5f324375
 ```
 
 网关转发至服务A
@@ -65,7 +64,7 @@
 **服务A 日志如下:**
 
 ```
-2022-04-09 22:16:05.476  INFO [log-trace-service-a-demo,33b07a9c5f324375,log-trace-zuul-demo,,] 88948 --- [nio-8081-exec-5] c.p.l.t.service.a.demo.TestController    : controller test2 执行 33b07a9c5f324375
+2022-04-09 22:16:05.476  INFO [log-trace-service-a-demo,33b07a9c5f324375,log-trace-gateway-demo,,] 88948 --- [nio-8081-exec-5] c.p.l.t.service.a.demo.TestController    : controller test2 执行 33b07a9c5f324375
 ```
 
 服务A 调用 服务B
@@ -106,5 +105,5 @@ spring.trace.log.format=X-B3-TraceId,X-B3-ParentName
 日志输出如下:
 
 ```
-2022-04-09 22:15:57.434 DEBUG [33b07a9c5f324375,this] 89996 --- [nio-8000-exec-1] c.p.l.t.s.i.zuul.TracePreZuulFilter      : zuul traceid 33b07a9c5f324375
+2022-04-09 22:15:57.434 DEBUG [33b07a9c5f324375,this] 89996 --- [nio-8000-exec-1] c.p.l.t.s.i.gateway.TracePregatewayFilter      : gateway traceid 33b07a9c5f324375
 ```

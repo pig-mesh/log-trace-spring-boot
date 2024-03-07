@@ -5,11 +5,8 @@ com.pig4cloud.trace.instrument.servlet.TraceServletConfiguration,\
 com.pig4cloud.trace.instrument.reactive.TraceReactiveConfiguration,\
 com.pig4cloud.trace.instrument.gateway.TraceGatewayAutoConfiguration,\
 com.pig4cloud.trace.instrument.feign.TraceFeignClientAutoConfiguration,\
-com.pig4cloud.trace.instrument.zuul.TraceZuulAutoConfiguration,\
-com.pig4cloud.trace.instrument.resttemplate.TraceRestTemplateConfiguration,\
-com.pig4cloud.trace.instrument.dubbo.TraceDubboConfiguration
+com.pig4cloud.trace.instrument.resttemplate.TraceRestTemplateConfiguration
 
 # Environment Post Processor
 org.springframework.boot.env.EnvironmentPostProcessor=\
-com.pig4cloud.trace.processor.TraceEnvironmentPostProcessor,\
-com.pig4cloud.trace.instrument.dubbo.TraceDubboEnvironmentPostProcessor
+com.pig4cloud.trace.processor.TraceEnvironmentPostProcessor

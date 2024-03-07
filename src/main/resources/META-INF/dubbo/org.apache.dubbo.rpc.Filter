@@ -1,2 +1,0 @@
-TraceDubboProviderFilter=com.pig4cloud.trace.instrument.dubbo.provider.TraceDubboProviderFilter
-TraceDubboConsumerFilter=com.pig4cloud.trace.instrument.dubbo.consumers.TraceDubboConsumerFilter
