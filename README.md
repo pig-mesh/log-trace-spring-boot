@@ -40,6 +40,8 @@
 
 ### 配置应用
 
+<img src='https://minio.pigx.top/oss/202403/1709779710.png' alt='1709779710'/>
+
 这里以3个微服务来举例子。
 
 1. `log-trace-gateway-demo` 充当网关功能
